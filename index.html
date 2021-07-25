@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="header">
+        <h1>Weather Dashboard</h1>
+    </header>
+    
+    <main class="flex-row">
+        <div class="serach-column">
+            <div class="search-card">
+                <h3 class="card-header">  Search for a City</h3>
+                <form>
+                    <input name="city" id="city-input" type="text" autofocus="true" class="form-input"
+                    placeholder="Toronto"/>
+                    <button type="submit" class="btn">Search</button>
+                </form>
+            </div>
+
+            <div class="search-card">
+                <h3 class="card-header">Search By Topic</h3>
+                <div id="city-buttons" class="card-body"></div>
+            </div>
+        </div>
+
+        <div class="result-column" id="result-container">
+            <h2 class="result-header">Showing Weather for: <span id="weather-search-term"></span></h2>
+            <div id="weather-container"></div>
+            <div id="five-day-container"></div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="script.js"></script>
+    
+
+</body>
+</html>
