@@ -113,3 +113,40 @@ function displayMainCard() {
     currWeather.append(currUVI)
 }
 
+// function for displaying forecast 
+
+function display5day() {
+    for (var i = 1; i < 6; i++) {        
+        var date = moment().add(i,'days');
+        var dailyWeatherIcon = currentData.weather[0].icon + ".png"
+
+        dailyWeather = document.createElement('div');
+        dailyWeather.setAttribute("class", "fiveday-card");
+        fiveDayContainer.append(dailyWeather);
+
+        var dailyHeader = document.createElement('h3');
+        dailyHeader.textContent = date.format("MMM Do");
+        dailyHeader.setAttribute("class", "weather-header");
+        dailyWeather.append(dailyHeader);
+
+        var dailyIcon = document.createElement('img')
+        dailyIcon.setAttribute("id", "weather-icon")
+        dailyIcon.setAttribute("src", iconURL + dailyWeatherIcon)
+        dailyHeader.append(dailyIcon)
+
+        var dailyTemp = document.createElement('p')
+        dailyTemp.textContent = "Temp: " + fiveDayData[i].temp.day
+        dailyWeather.append(dailyTemp)
+    
+        var dailyWind = document.createElement('p')
+        dailyWind.textContent = "Wind: " + fiveDayData[i].wind_speed
+        dailyWeather.append(dailyWind)
+    
+        var dailyHumidity = document.createElement('p')
+        dailyHumidity.textContent = "Humidity: " + fiveDayData[i].humidity
+        dailyWeather.append(dailyHumidity)
+    }
+}
+
+
+
