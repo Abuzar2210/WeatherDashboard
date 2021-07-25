@@ -25,3 +25,47 @@ function forSubmitHandler(event){
     }
     getWeatherData(cityName)
 }
+
+function getWeatherData(city){
+    weatherContainer.remove();
+    fiveDayContainer.remove();
+
+    weatherContainer = document.createElement("div")
+    fiveDayContainer = document.createElement("div")
+    fiveDayContainer.setAttribute('id', 'five-day-container')
+    resultContainer.append(weatherContainerEl)
+    resultContainer.append(fiveDayContainerEl)
+
+    var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + apiKey;
+
+    //API fetch
+
+    fetch(weatherUrl).then(function (response){
+        response.json().then(function (data){
+            coord = data.coord
+            getForecastData(coord.lat, coord.lon)
+        })
+
+    })
+    .catch(function (error){
+        console.log(error);
+    })
+}
+
+//function for weather data
+
+function getForecastData(lat, lon){
+    var fiveDayUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=metric&exclude=minutely,hourly,alerts&appid=" + apiKey
+    fetch(fiveDayUrl)
+        .then(function (response) {
+            response.json().then(function (data) {
+                currentData = data.current;
+                fiveDayData = data.daily;
+                displayMainCard();
+                display5day();
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+}
