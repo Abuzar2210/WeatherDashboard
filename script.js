@@ -69,3 +69,47 @@ function getForecastData(lat, lon){
             console.log(error);
         })
 }
+
+function displayMainCard() {
+    var uvi = currentData.uvi;
+    var currWeatherIcon = currentData.weather[0].icon + ".png"
+    var currDate = today.format("MMM Do, YYYY")
+
+    currWeather = document.createElement('div');
+    currWeather.setAttribute("class", "weather-card");
+    weatherContainer.append(currWeatherEl);
+
+    var currHeader = document.createElement('h2')
+    currHeader.setAttribute("class","weather-header")
+    currHeader.textContent = cityName + " | " + currDate
+    currWeather.append(currHeader)
+
+    var currIcon = document.createElement('img')
+    currIcon.setAttribute("id", "weather-icon")
+    currIcon.setAttribute("src", iconURL + currWeatherIcon)
+    currHeader.append(currIcon)
+
+    var currTemp = document.createElement('p')
+    currTemp.textContent = "Temp: " + currentData.temp
+    currWeather.append(currTemp)
+
+    var currWind = document.createElement('p')
+    currWind.textContent = "Wind: " + currentData.wind_speed
+    currWeather.append(currWind)
+
+    var currHumidity = document.createElement('p')
+    currHumidity.textContent = "Humidity: " + currentData.humidity
+    currWeather.append(currHumidity)
+
+    var currUVI = document.createElement('p')
+    currUVI.textContent = "UVI: " + uvi
+    if (uvi < 2) {
+        currUVI.setAttribute("class", "uvi-low")
+    } else if (uvi < 5) {
+        currUVI.setAttribute("class", "uvi-med")
+    } else {
+        currUVI.setAttribute("class", "uvi-high")
+    }
+    currWeather.append(currUVI)
+}
+
